@@ -80,7 +80,11 @@ while usingProgram == True:
 
         #Encrypts the users input string with the ciphertext
         for i in inputString:
+            #Checks if the character is a space
             if not i == " ":
+                #Gets the index for the character to be encrypted in the
+                #plaintext and passes that index to the ciphertext, encrypting
+                #the character
                 outputString += chr(cipherText[plainText.index(ord(i))])
             else:
                 outputString += " "
@@ -122,9 +126,13 @@ while usingProgram == True:
                 if pos > 25:
                     pos -= 26
 
-
+        #Decrypts the users input string with the ciphertext
         for i in inputString:
+            #Checks if the current character is a space
             if not i == " ":
+                #Gets the index for the encryted character in the ciphertext
+                #and passes that same index to the plaintext, decrytping the
+                #character
                 outputString += chr(plainText[cipherText.index(ord(i))])
             else:
                 outputString += " "
