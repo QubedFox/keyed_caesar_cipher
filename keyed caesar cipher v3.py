@@ -14,13 +14,12 @@ decrypting = False
 bruteForce = False
 usingProgram = True
 
-
 while usingProgram == True:
 
     offsetInRange = False
     commandInRange = False
     
-    ASCIITranslation = []
+    cipherText = []
     outputString = ""
 
     while commandInRange == False:
@@ -47,31 +46,42 @@ while usingProgram == True:
     elif command == 4:
         usingProgram = False
     
-
-    while encrypting == True:   
+    #-----ENCRYPTION-----
+    while encrypting == True:
+        #Initialises cipherText list with 26 empty spaces
         for i in range(0, 26):
-            ASCIITranslation.append("_")
+            cipherText.append("_")
 
+        #Creates list of ASCII values for the plaintext alphabet
+        # i.e. [97, 98, 99, 100, 101, ... , 122]
         for i in range(97, 123):
             plainText.append(i)
 
+        #Adds the letters in the keyword to the cipherText without
+        #repeating letters that appear twice.
         for i in keyWord:
-            if not ASCIITranslation.count(ord(i)) > 0:
-                ASCIITranslation[pos] = ord(i)
+            #Checks if the letter it's appending appears more than once
+            #in the ciphertext
+            if not cipherText.count(ord(i)) > 0:
+                cipherText[pos] = ord(i)
                 pos += 1
                 if pos > 25:
                     pos -= 26
 
+        #Adds the rest of the alphabet after the keyword letters
         for i in plainText:
-            if not ASCIITranslation.count(i) > 0:
-                ASCIITranslation[pos] = i
+            #Checks if the letter it's appending appears more than once
+            #in the ciphertext
+            if not cipherText.count(i) > 0:
+                cipherText[pos] = i
                 pos += 1
                 if pos > 25:
                     pos -= 26
 
+        #Encrypts the users input string with the ciphertext
         for i in inputString:
             if not i == " ":
-                outputString += chr(ASCIITranslation[plainText.index(ord(i))])
+                outputString += chr(cipherText[plainText.index(ord(i))])
             else:
                 outputString += " "
                 
@@ -80,35 +90,44 @@ while usingProgram == True:
 
 
         
-
-    while decrypting == True:  
+    #-----DECRYPTION-----
+    while decrypting == True:
+        #Initialises cipherText list with 26 empty spaces
         for i in range(0, 26):
-            ASCIITranslation.append("_")
+            cipherText.append("_")
 
+        #Creates list of ASCII values for the plaintext alphabet
+        # i.e. [a, b, c, d, e, ... , z]
         for i in range(97, 123):
             plainText.append(i)
 
+        #Adds the letters in the keyword to the cipherText without
+        #repeating letters that appear twice.
         for i in keyWord:
-            if not ASCIITranslation.count(ord(i)) > 0:
-                ASCIITranslation[pos] = ord(i)
+            #Checks if the letter it's appending appears more than once
+            #in the ciphertext
+            if not cipherText.count(ord(i)) > 0:
+                cipherText[pos] = ord(i)
                 pos += 1
                 if pos > 25:
                     pos -= 26
 
+        #Adds the rest of the alphabet after the keyword letters
         for i in plainText:
-            if not ASCIITranslation.count(i) > 0:
-                ASCIITranslation[pos] = i
+            #Checks if the letter it's appending appears more than once
+            #in the ciphertext
+            if not cipherText.count(i) > 0:
+                cipherText[pos] = i
                 pos += 1
                 if pos > 25:
                     pos -= 26
+
 
         for i in inputString:
             if not i == " ":
-                outputString += chr(plainText[ASCIITranslation.index(ord(i))])
+                outputString += chr(plainText[cipherText.index(ord(i))])
             else:
                 outputString += " "
                 
         print (outputString)
         decrypting = False
-
-
