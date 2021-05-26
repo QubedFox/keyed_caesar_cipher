@@ -7,6 +7,15 @@ class KeyedCaesarCipher:
     def setKeyword(self, keyword):
         self.__keyword = keyword
 
+    def getKeyword(self):
+        return self.__keyword
+
+    def getPlain(self):
+        return self.__plain
+
+    def getCipher(self):
+        return self.__cipher
+
     def __initialiseKeys(self):
         self.__cipher = []
         self.__plain = []
@@ -16,7 +25,7 @@ class KeyedCaesarCipher:
             self.__cipher.append("_")
 
         #Creates list of ASCII values for the plaintext alphabet
-        # i.e. [a, b, c, d, e, ... , z]
+        # i.e. [a, b, c, d, e, ... , z] but the ASCII values instead
         for i in range(97, 123):
             self.__plain.append(i)
 
